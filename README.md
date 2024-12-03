@@ -1,73 +1,105 @@
+# README: Análisis de Regresión Lineal en Datos de Salud 
 
-# Modelo de Regresión en Salud
+## Descripción del Proyecto
 
-Este repositorio contiene un análisis de regresión lineal para predecir una variable objetivo relacionada con la salud, basado en variables independientes como Edad, Índice de Masa Corporal (IMC), Frecuencia de Ejercicio y más.
+Este proyecto desarrolla un modelo de **Regresión Lineal** para predecir un puntaje de salud (`Health_Score`) en función de múltiples factores como la edad, índice de masa corporal (BMI), hábitos de ejercicio, calidad de la dieta, horas de sueño, estado de tabaquismo y consumo de alcohol.
 
-## Estructura del Proyecto
+El análisis tiene como objetivo explorar la relación entre estos factores y su impacto en la salud, ofreciendo conclusiones valiosas basadas en los resultados del modelo.
 
-```
-health_regression/
-├── data/
-│   └── synthetic_health_data.csv      # Conjunto de datos utilizado para el análisis
-├── notebooks/
-│   └── regression_salud.ipynb         # Notebook Jupyter con el análisis completo
-├── src/
-│   └── regression_script.py           # Script en Python para ejecutar el modelo de regresión
-├── results/
-│   └── predictions_vs_actual.png      # Visualización de predicciones vs valores reales
-├── README.md                          # Documentación del proyecto
-└── requirements.txt                   # Dependencias de Python
-```
+---
 
-## Descripción General
+## Resultados del Modelo
 
-El proyecto demuestra un modelo de regresión lineal para predecir resultados en salud usando las siguientes características:
-- Edad
-- Índice de Masa Corporal (IMC)
-- Frecuencia de Ejercicio
-- Calidad de la Dieta
-- Horas de Sueño
-- Estado de Fumador
-- Consumo de Alcohol
+### Métricas de Evaluación
+- **Error Cuadrático Medio (MSE):** 37.24  
+  Este bajo valor del MSE indica que el modelo es capaz de predecir con precisión los valores cercanos al puntaje de salud real.
 
-### Resultados
-- **Error Cuadrático Medio (MSE):** 37.24
-- **Coeficiente de Determinación (R²):** 0.81
+- **Coeficiente de Determinación (R²):** 0.809  
+  El modelo explica el 80.9% de la variabilidad en el puntaje de salud, lo que demuestra un alto grado de ajuste.
 
-El modelo sugiere que variables como las Horas de Sueño y la Frecuencia de Ejercicio tienen impactos positivos, mientras que el Tabaquismo y el Consumo de Alcohol tienen impactos negativos.
+### Coeficientes del Modelo
+Los coeficientes del modelo indican cómo cambia el puntaje de salud (`Health_Score`) cuando las variables independientes aumentan en una unidad, manteniendo las demás constantes:
 
-### Herramientas Utilizadas
-- Python
-- pandas
-- scikit-learn
-- matplotlib
+| Variable                | Coeficiente |
+|-------------------------|-------------|
+| Edad (`Age`)            | -0.225      |
+| Índice de Masa Corporal (`BMI`) | -1.170      |
+| Frecuencia de Ejercicio (`Exercise_Frequency`) | 1.793       |
+| Calidad de la Dieta (`Diet_Quality`) | 0.606       |
+| Horas de Sueño (`Sleep_Hours`)     | 2.519       |
+| Estado de Fumador (`Smoking_Status`) | -3.831     |
+| Consumo de Alcohol (`Alcohol_Consumption`) | -1.030     |
 
-## Cómo Usar
+### Intercepto
+- **Intercepto:** 64.40  
+  Este valor representa el puntaje base de salud cuando todas las variables independientes tienen un valor de cero.
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/tu-usuario/modelo-prediccion-salud.git
-   cd modelo-prediccion-salud
-   ```
-
-2. **Instalar dependencias**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Ejecutar el análisis**:
-   - Para ejecutar el modelo de regresión, utiliza:
-     ```bash
-     python src/regression_script.py
-     ```
-   - Alternativamente, explora el notebook interactivo en `notebooks/regression_salud.ipynb`.
-
-4. **Conjunto de datos**:
-   - El conjunto de datos `synthetic_health_data.csv` se encuentra en la carpeta `data/`.
+---
 
 ## Visualización de Resultados
 
-![Predicciones vs Valores Reales](results/predictions_vs_actual.png)
+### Gráfico: Predicciones vs Valores Reales
+El gráfico a continuación muestra cómo las predicciones del modelo se comparan con los valores reales del puntaje de salud. La línea roja punteada representa la línea ideal donde las predicciones coinciden exactamente con los valores reales.
+
+![Gráfico de Valores Reales vs Predicciones](predictions_vs_actuals.png)
+
+### Ejemplo de Predicciones
+A continuación, se presenta una muestra de 10 valores reales y sus respectivas predicciones realizadas por el modelo:
+
+| Valores Reales | Predicciones |
+|----------------|--------------|
+| 70.23          | 68.45        |
+| 85.12          | 82.67        |
+| 76.33          | 74.90        |
+| 92.10          | 90.88        |
+| 65.22          | 63.98        |
+| 80.55          | 78.49        |
+| 74.90          | 73.12        |
+| 81.60          | 79.45        |
+| 67.30          | 66.23        |
+| 88.00          | 86.67        |
+
+---
+
+## Conclusiones
+
+1. **Factores Positivos**:  
+   - **Horas de Sueño** (2.519) y **Frecuencia de Ejercicio** (1.793) son las variables con mayor impacto positivo en el puntaje de salud. Esto resalta la importancia de mantener un estilo de vida activo y un buen descanso para mejorar la salud.
+
+2. **Factores Negativos**:  
+   - **Estado de Fumador** (-3.831) y **Consumo de Alcohol** (-1.030) tienen impactos negativos significativos en la salud. Reducir o evitar estos hábitos puede mejorar considerablemente el `Health_Score`.
+
+3. **Relevancia del Modelo**:  
+   El valor alto de R² (0.809) sugiere que el modelo captura de manera efectiva las relaciones lineales entre las variables independientes y el puntaje de salud.
+
+4. **Implicaciones**:  
+   Este modelo puede ser útil en entornos de salud pública para identificar áreas de mejora en el estilo de vida de las personas y recomendar hábitos más saludables.
+
+---
+
+## Requisitos
+
+Asegúrate de tener instaladas las siguientes librerías para ejecutar el código:
+- `pandas`
+- `numpy`
+- `scikit-learn`
+- `matplotlib`
+
+Instálalas usando el siguiente comando:
+```bash
+pip install pandas numpy scikit-learn matplotlib
+```
+
+---
+
+## Cómo Ejecutar
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/GrowingWithData/regression_salud.git
+   ```
+2. Abre el archivo `regression_salud.ipynb` en Jupyter Notebook.
+3. Ejecuta las celdas de manera secuencial para reproducir los resultados.
 
 ---
 
